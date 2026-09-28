@@ -14,13 +14,17 @@ jobs:
 
     steps:
       - name: Pull latest Docker image
-        run: docker pull sang20xn/product-api:latest
+        run: |
+          & "C:\Users\SANG\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" pull sang20xn/product-api:latest
 
       - name: Deploy Product API
-        run: docker compose -f C:\Project\product-api\docker-compose-prod.yaml up -d
+        run: |
+          & "C:\Users\SANG\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" compose -f "C:\Project\product-api\docker-compose-prod.yaml" up -d
 
       - name: Check containers
-        run: docker compose -f C:\Project\product-api\docker-compose-prod.yaml ps
+        run: |
+          & "C:\Users\SANG\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" compose -f "C:\Project\product-api\docker-compose-prod.yaml" ps
 
       - name: Check API health
-        run: curl.exe -f http://localhost:3001/health
+        run: |
+          curl.exe -f http://localhost:3001/health
