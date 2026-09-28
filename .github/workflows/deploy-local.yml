@@ -13,6 +13,10 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Check Docker
+        run: |
+          & "C:\Users\SANG\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" version
+
       - name: Pull latest Docker image
         run: |
           & "C:\Users\SANG\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" pull sang20xn/product-api:latest
