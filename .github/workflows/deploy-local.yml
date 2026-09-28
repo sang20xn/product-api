@@ -1,0 +1,26 @@
+name: Product API CD - Local Docker
+
+on:
+  workflow_run:
+    workflows:
+      - Product API CD - Docker Hub
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest Docker image
+        run: docker pull sang20xn/product-api:latest
+
+      - name: Deploy Product API
+        run: docker compose -f C:\Project\product-api\docker-compose-prod.yaml up -d
+
+      - name: Check containers
+        run: docker compose -f C:\Project\product-api\docker-compose-prod.yaml ps
+
+      - name: Check API health
+        run: curl.exe -f http://localhost:3001/health
