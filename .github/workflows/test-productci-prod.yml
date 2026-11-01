@@ -15,7 +15,7 @@ jobs:
 
     services:
       mongodb:
-        image: mongo:8
+        image: mongo:7
         env:
           MONGO_INITDB_ROOT_USERNAME: admin
           MONGO_INITDB_ROOT_PASSWORD: 123456
